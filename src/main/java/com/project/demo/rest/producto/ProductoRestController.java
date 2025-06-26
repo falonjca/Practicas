@@ -65,7 +65,7 @@ public class ProductoRestController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN')")
     public ResponseEntity<?> updateProductoById(@PathVariable Long id, @RequestBody Producto producto, HttpServletRequest request) {
         Optional<Producto> foundProducto = productoRepository.findById(id);
         if(foundProducto.isPresent()) {
@@ -87,7 +87,7 @@ public class ProductoRestController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN')")
     public ResponseEntity<?> createProducto(@RequestBody Producto producto, HttpServletRequest request) {
         if (producto.getCategoria() != null && producto.getCategoria().getId() != null) {
             Optional<Categoria> foundCategoria = categoriaRepository.findById(producto.getCategoria().getId());
@@ -110,7 +110,7 @@ public class ProductoRestController {
 
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN')")
     public ResponseEntity<?> deleteProducto(@PathVariable Long id, HttpServletRequest request) {
         Optional<Producto> foundProducto = productoRepository.findById(id);
         if(foundProducto.isPresent()) {
@@ -128,6 +128,4 @@ public class ProductoRestController {
                     HttpStatus.NOT_FOUND, request);
         }
     }
-
-
 }

@@ -58,7 +58,7 @@ public class CategoriaRestController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN')")
     public ResponseEntity<?> updateCategoriaById(@PathVariable Long id, @RequestBody Categoria categoria, HttpServletRequest request) {
         Optional<Categoria> foundCategoria = categoriaRepository.findById(id);
         if(foundCategoria.isPresent()) {
@@ -77,7 +77,7 @@ public class CategoriaRestController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN')")
     public ResponseEntity<?> crearCategoria(@RequestBody Categoria categoria, HttpServletRequest request) {
         Optional<Categoria> foundCategoria = categoriaRepository.findByNombre(categoria.getNombre());
 
@@ -95,7 +95,7 @@ public class CategoriaRestController {
 
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('SUPER_ADMIN_ROLE')")
+    @PreAuthorize("hasAnyRole('SUPER_ADMIN')")
     public ResponseEntity<?> deleteCategoria(@PathVariable Long id, HttpServletRequest request) {
         Optional<Categoria> foundCategoria = categoriaRepository.findById(id);
 
@@ -119,7 +119,4 @@ public class CategoriaRestController {
                     HttpStatus.NOT_FOUND, request);
         }
     }
-
-
-
 }
