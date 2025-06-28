@@ -1,9 +1,8 @@
 package com.project.demo.logic.entity.producto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.demo.logic.entity.categoria.Categoria;
 import jakarta.persistence.*;
-
 
 @Entity
 @Table(name = "productos")
@@ -20,7 +19,7 @@ public class Producto {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = true)
     @JoinColumn(name = "categoria_id", referencedColumnName = "id", nullable = true)
-    @JsonBackReference
+    //@JsonManagedReference
     private Categoria categoria;
 
 

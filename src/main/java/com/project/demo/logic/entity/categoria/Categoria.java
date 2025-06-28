@@ -1,10 +1,9 @@
 package com.project.demo.logic.entity.categoria;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.project.demo.logic.entity.producto.Producto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-
 import java.util.List;
+
+import com.project.demo.logic.entity.producto.Producto;
 
 @Entity
 @Table(name= "categorias")
@@ -18,7 +17,7 @@ public class Categoria {
     private String descripcion;
 
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Producto> productos;
 
 
